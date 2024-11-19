@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Template Areas</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        main {
+            display: grid;
+            grid-template-areas: "topbar" "content";
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        header {
+            grid-area: topbar;
+        }
+
+        article {
+            grid-area: content;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            /* Espaciado uniforme */
+            align-items: center;
+            /* Centrados verticalmente */
+            background-color: #111;
+            padding: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Elementos de la navegación */
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        #gallery img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 2;
+            border-radius: 3%;
+            box-shadow: 8px 10px 20px #00000085;
+            filter: grayscale(.5);
+            /* filter: grayscale(.5) brightness(.5) */
+            object-fit: cover;
+            /* object-fit: none;*/
+            /* object-position: 6% 74%;*/
+        }
+
+        #gallery img:hover {
+            transform: scale(1.1);
+            transition: transform 300ms;
+            filter: grayscale(0);
+            box-shadow: 8px 10px 30px #000000dd;
+        }
+
+        #botones {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav class="navbar">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+        <article>
+            <div id="botones">
+                <button id="btn1">Filter1</button>
+                <button id="btn2">Filter2</button>
+                <button id="btn3">Filter3</button>
+                <button id="btn4">Filter4</button>
+            </div>
+            <div id="gallery">
+                <img tabindex="0"
+                    src="https://images.unsplash.com/photo-1727324735318-c25d437052f7?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <img tabindex="0"
+                    src="https://images.unsplash.com/photo-1727207652611-59e981d73c48?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <img tabindex="0"
+                    src="https://images.unsplash.com/photo-1727108106379-f4ff1ba26ebc?q=80&w=2435&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <img tabindex="0"
+                    src="https://images.unsplash.com/photo-1727282960386-4d2ccdc87ad0?q=80&w=2380&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <img tabindex="0"
+                    src="https://images.unsplash.com/photo-1727764673414-ff6a30881bec?q=80&w=1910&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="">
+                <img tabindex="0"
+                    src="https://images.unsplash.com/photo-1727799777485-4939c90326ad?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="">
+                <img tabindex="0"
+                    src="https://images.unsplash.com/photo-1726551195764-f98a8e8a57c3?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="">
+                <img tabindex="0"
+                    src="https://images.unsplash.com/photo-1726250947679-3d89963934d8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="">
+            </div>
+            <script>
+                let btn1 = document.getElementById('btn1')
+                let btn2 = document.getElementById('btn2')
+                let btn3 = document.getElementById('btn3')
+                let btn4 = document.getElementById('btn4')
+                let grid = document.getElementById('gallery')
+
+                let imgs = grid.getElementsByTagName('img');
+
+
+                btn1.addEventListener('click', function () {
+                    if (grid.style.gridTemplateColumns === 'repeat(auto-fit, minmax(200px, 2fr))') {
+                        grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(150px, 3fr))';
+                    } else {
+                        grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(200px, 2fr))';
+                    }
+                });
+
+                btn2.addEventListener('click', function () {
+                    // Iterar sobre todas las imágenes y cambiar el border-radius
+                    for (let i = 0; i < imgs.length; i++) {
+                        if (imgs[i].style.borderRadius === '3%') {
+                            imgs[i].style.borderRadius = '50%';
+                            imgs[i].style.aspectRatio = '1 / 1';
+                      //Caso que sea otro filter aparte
+                        } else if (imgs[i].style.borderRadius === '0%') {
+                            imgs[i].style.borderRadius = '50%';
+                            imgs[i].style.aspectRatio = '1 / 1';
+                        } else {
+                            imgs[i].style.borderRadius = '3%';
+                            imgs[i].style.aspectRatio = ''
+                        }
+                    }
+                });
+
+                btn3.addEventListener('click', function () {
+                    for (let i = 0; i < imgs.length; i++) {
+                        if (imgs[i].style.borderRadius === '3%' && imgs[i].style.aspectRatio !== '1 / 1') {
+                            imgs[i].style.borderRadius = '0%';
+                            imgs[i].style.aspectRatio = '1 / 1';
+                        } else if (imgs[i].style.borderRadius === '50%') {
+                            imgs[i].style.borderRadius = '0%';
+                            imgs[i].style.aspectRatio = '1 / 1';
+                        } else if (imgs[i].style.aspectRatio === '3 / 4') {
+                            imgs[i].style.aspectRatio = '1 / 1';
+                            imgs[i].style.borderRadius = '0%';
+                        }
+                        else {
+                            imgs[i].style.borderRadius = '3%';
+                            imgs[i].style.aspectRatio = '';
+                        }
+                    }
+                });
+
+                btn4.addEventListener('click', function () {
+                    for (let i = 0; i < imgs.length; i++) {
+                        if (imgs[i].style.borderRadius === '3%' && imgs[i].style.aspectRatio !== '3 / 4') {
+                            imgs[i].style.borderRadius = '0%';
+                            imgs[i].style.aspectRatio = '3 / 4';
+                        } else if (imgs[i].style.borderRadius === '50%') {
+                            imgs[i].style.borderRadius = '0%';
+                            imgs[i].style.aspectRatio = '3 / 4';
+                        } else if (imgs[i].style.aspectRatio === '1 / 1') {
+                            imgs[i].style.aspectRatio = '3 / 4';
+                            imgs[i].style.borderRadius = '0%';
+                        } else {
+                            imgs[i].style.borderRadius = '3%';
+                            imgs[i].style.aspectRatio = '';
+                        }
+                    }
+                });
+                     // Arreglo de URLs para las imágenes aleatorias
+        const imageUrls = [
+          "https://images.unsplash.com/photo-1727777427600-640c4632883f?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1727091462554-a36e6136b6ea?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzOHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1727783851864-67d9d2e78ea1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0OXx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1727965530585-25af21fc084d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2MHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1727799777485-4939c90326ad?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1725161834059-9741b5400d0f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMzR8fHxlbnwwfHx8fHw%3D"
+        ];
+
+        // Función para obtener una URL aleatoria del arreglo
+        function getRandomImage() {
+          const randomIndex = Math.floor(Math.random() * imageUrls.length);
+          return imageUrls[randomIndex];
+        }
+
+        // Agregar evento de clic a cada imagen en el grid
+        for (let i = 0; i < imgs.length; i++) {
+          imgs[i].addEventListener('click', function() {
+            // Cambiar la imagen a una aleatoria del arreglo
+            this.src = getRandomImage();
+          });
+        }
+
+            </script>
+        </article>
+    </main>
+</body>
+
+</html>

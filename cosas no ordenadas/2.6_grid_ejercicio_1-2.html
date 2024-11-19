@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+body{
+    margin: 0;
+
+}
+main {
+  display: grid;
+    height: 100vh;
+    grid-template-columns: 200px 1fr 100px;
+    grid-template-rows: 60px 1fr 60px;
+}
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333;
+    padding: 15px;
+    flex-wrap: wrap;
+}
+.navbar a{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+}
+.gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px
+}
+.gallery img{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 3%;
+    box-shadow: 8px 10px 20px gray;
+    filter: grayscale(1);
+    object-fit: cover;
+}
+.gallery img:hover{
+    transform:scale(.5);
+    transition: transform 0.3s;
+    filter: grayscale(0);
+    box-shadow: 8px 10px 20px #000000dd;
+}
+.gallery img:focus-within{
+    transform:scale(1);
+    transition: transform 0.3s;
+    filter: grayscale(0);
+    box-shadow: 8px 10px 20px #000000dd;
+    z-index: 1;
+    transform-origin:-50% -50%;
+}
+header { grid-area: topbar; }
+aside{ grid-area: ads;}
+article{grid-area: content;}
+nav { grid-area: ads; }
+footer { grid-area: footer;}
+header,
+nav,
+footer{
+    background-color: aquamarine;
+}
+    </style>
+<main>
+    <header>
+        <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </header>
+    <aside>Ads</aside>
+    <article>Content</article>
+    <nav>Sidebar</nav>
+    <footer>Footer</footer>
+</main>
+</body>
+</html>

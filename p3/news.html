@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <custom-search class="menu-container">
+        <div class="flex p-10 shadow-md min-h-60px">
+            <button class="menu-toggle transparent">≡</button>
+            <aside class="menu-sidebar">
+            </aside>
+            <span class="logo">
+                <a href="index.html">
+                    <span class="logo-item">R</span>
+                    <span class="logo-item">U</span>
+                    <span class="logo-item">B</span>
+                    <span class="logo-item">É</span>
+                    <span class="logo-item">N</span>
+                </a>
+            </span>
+            <button class="dialog-search transparent">🔍</button>
+        </div>
+        <nav class="navbar">
+            <button class="menu-close"><i class="bi bi-x"></i></button>
+            <ul class="flex nav-list">
+                <li class="hijos"><a href="index.html">Home</a></li>
+                <li class="hijos active"><a href="news.html">News</a></li>
+                <li class="hijos"><a href="usselection.html">US Selection</a></li>
+                <li class="hijos"><a href="sport.html">Sport</a></li>
+                <li class="hijos"><a href="business.html">Business</a></li>
+            </ul>
+        </nav>
+        <dialog>
+            <button class="close-btn">🗙</button>
+            <h1>Search</h1>
+            <input type="search" id="site-search" name="q" />
+    
+            <template>
+                <li>
+                    <div class="flex flex-col items-center card">
+                        <img class="object-cover item-image" src="https://flowbite.com/docs/images/blog/image-4.jpg">
+                        <div class="flex flex-col justify-between">
+                            <h5 class="item-title">
+                                <a href="article.html?id={id}">
+                                    {value}
+                                </a>
+                            </h5>
+                            <p class="item-description">Here are the biggest enterprise technology acquisitions of 2021 so
+                                far, in
+                                reverse chronological order.
+                            </p>
+                            <relative-time time="Wed Oct 16 2024 11:12:41 GMT+0200" />
+                        </div>
+                    </div>
+                </li>
+            </template>
+    
+            <ul id="search-results">
+            </ul>
+        </dialog>
+    </custom-search>
+    
+    <main>
+        <custom-article>
+            <article class="block">
+                
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/1024/cpsprodpb/469b/live/f2b212f0-963e-11ef-9260-19e6a950e830.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=7">
+                          World Leaders Gather for Climate Summit in Glasgow</a>
+                    </h1>
+                    
+                    <p>Global leaders convene in Glasgow for a critical climate summit, aiming to strengthen commitments to reduce carbon emissions and combat climate change.</p>
+                        <relative-time time="2024-09-17T10:32:45Z"></relative-time>
+                </div>
+                <div class="grids">
+                  <img class="article-img" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/c6a3/live/d1f38410-95d3-11ef-9eb7-7b7defb4f9e7.jpg.webp">
+                  <h1 class="title">
+                      <a href="article.html?id=8">
+                        UK Inflation Rate Hits 40-Year High </a>
+                  </h1>
+                  
+                  <p>The UK faces economic challenges as inflation rates reach their highest level in four decades, raising concerns about the cost of living for families.</p>
+                      <relative-time time="2024-10-28T10:15:00Z"></relative-time>
+              </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/480/cpsprodpb/d561/live/e27abbc0-9455-11ef-89ae-5575c76d98e6.png.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=9">
+                          US Elections: Early Voting Surges Ahead of Midterms</a>
+                    </h1>
+                    
+                    <p>Early voting has surged across the United States as citizens prepare for the upcoming midterm elections, with high turnout expected in key battleground states.</p>
+                        <relative-time time="2024-10-27T12:00:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/1536/cpsprodpb/10cf/live/8ced1530-8a4c-11ef-b6b0-c9af5f7f16e4.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=10">
+                          NASA Launches Mission to Explore Asteroid Belt</a>
+                    </h1>
+                    
+                    <p>NASA has successfully launched a new spacecraft on a mission to explore the asteroid belt, aiming to gather data that could reveal insights into the solar system's formation.</p>
+                        <relative-time time="2024-10-26T15:45:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/27d6/live/c1fc7dc0-95f9-11ef-8e2e-e71633ffe5ec.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=11">
+                          Global Markets Slide as US Fed Signals Rate Hikes</a>
+                    </h1>
+                    
+                    <p>Global financial markets are in turmoil as the US Federal Reserve hints at more aggressive interest rate hikes to combat rising inflation.</p>
+                        <relative-time time="2024-10-25T09:30:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/4ce2/live/e4272a10-9222-11ef-89ae-5575c76d98e6.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=12">
+                          New Study Links Screen Time to Sleep Issues in Teens</a>
+                    </h1>
+                    
+                    <p>A recent study reveals a strong correlation between increased screen time and sleep problems among teenagers, prompting calls for better digital habits.</p>
+                        <relative-time time="2024-10-24T11:00:00Z"></relative-time>
+                    </div>    
+            </article>
+        </custom-article>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <custom-dialog>
+      <button id="dialog-btn">Open</button>
+      <dialog id="dialogo">
+        <button id="close-btn" class="close-btn">🗙</button>
+        <h1>Dialog</h1>
+        <p>This is a dialog.</p>
+      </dialog>
+    </custom-dialog>
+
+    <style>
+      .close-btn {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      dialog {
+        background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 0 10px #00000061;
+        width: 400px;
+        padding: 20px;
+        position: relative;
+        text-align: center;
+      }
+      dialog::backdrop{
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    </style>
+
+    <script>
+      class CustomDialog extends HTMLElement {
+        constructor() {
+          super();
+        }
+        connectedCallback() {
+            let btnabrir = this.querySelector('#dialog-btn');
+            let btncerrar = this.querySelector('#close-btn');
+            let dialogo = this.querySelector('#dialogo');
+            btnabrir.addEventListener('click', function(){
+                dialogo.showModal();
+            })
+            btncerrar.addEventListener('click',function(){
+                dialogo.close();
+            })
+        }
+      }
+      customElements.define('custom-dialog', CustomDialog);
+    </script>
+  </body>
+</html>

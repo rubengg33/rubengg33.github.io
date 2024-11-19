@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <custom-search class="menu-container">
+        <div class="flex p-10 shadow-md min-h-60px">
+            <button class="menu-toggle transparent">≡</button>
+            <aside class="menu-sidebar">
+            </aside>
+            <span class="logo">
+                <a href="index.html">
+                    <span class="logo-item">R</span>
+                    <span class="logo-item">U</span>
+                    <span class="logo-item">B</span>
+                    <span class="logo-item">É</span>
+                    <span class="logo-item">N</span>
+                </a>
+            </span>
+            <button class="dialog-search transparent">🔍</button>
+        </div>
+        <nav class="navbar">
+            <button class="menu-close"><i class="bi bi-x"></i></button>
+            <ul class="flex nav-list">
+                <li class="hijos active"><a href="index.html">Home</a></li>
+                <li class="hijos"><a href="news.html">News</a></li>
+                <li class="hijos"><a href="usselection.html">US Selection</a></li>
+                <li class="hijos"><a href="sport.html">Sport</a></li>
+                <li class="hijos"><a href="business.html">Business</a></li>
+            </ul>
+        </nav>
+        <dialog>
+            <button class="close-btn">🗙</button>
+            <h1>Search</h1>
+            <input type="search" id="site-search" name="q" />
+    
+            <template>
+                <li>
+                    <div class="flex flex-col items-center card">
+                        <img class="object-cover item-image" src="https://flowbite.com/docs/images/blog/image-4.jpg">
+                        <div class="flex flex-col justify-between">
+                            <h5 class="item-title">
+                                <a href="article.html?id={id}">
+                                    {value}
+                                </a>
+                            </h5>
+                            <p class="item-description">Here are the biggest enterprise technology acquisitions of 2021 so
+                                far, in
+                                reverse chronological order.
+                            </p>
+                            <relative-time time="Wed Oct 16 2024 11:12:41 GMT+0200" />
+                        </div>
+                    </div>
+                </li>
+            </template>
+    
+            <ul id="search-results">
+            </ul>
+        </dialog>
+    </custom-search>
+    
+    <main>
+        <custom-article>
+            <article class="block">
+                <div class="grids">
+                    <img class="article-img" src="https://cdn.kqed.org/wp-content/uploads/sites/35/2024/10/GettyImages-1347890261-1020x680.jpg">
+                    <h1 class="title">
+                        <a href="article.html?id=1">
+                            Climate Activists Push for Carbon Tax With Measure GG, But Critics Warn it Could Backfire </a>
+                    </h1>
+                    
+                    <p>Grassroots climate activists argue a tax on gas use in large buildings will help all of Berkeley kick
+                        fossil
+                        fuels. But many politicians, businesses, and nonprofits, even those that work on climate, don’t
+                        think Measure
+                        GG is the policy to get there.</p>
+                        <relative-time time="2023-10-17T11:00:16Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://fortune.com/img-assets/wp-content/uploads/2024/10/GettyImages-2170862982_413c33-e1729160290535.jpg?resize=1200,600">
+                    <h1 class="title">
+                        <a href="article.html?id=2">
+                            Musk’s empire risks being targeted by EU for potential X fines </a>
+                    </h1>
+                    
+                    <p>The EU may target Elon Musk’s broader business empire for X fines, potentially including revenue from SpaceX and Neuralink to increase penalties.</p>
+                        <relative-time time="2024-09-17T10:32:45Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://media.autoexpress.co.uk/image/private/s--X-WVjvBW--/f_auto,t_content-image-full-desktop@1/v1729160267/autoexpress/2024/10/Omode E5 first UK drive.jpg">
+                    <h1 class="title">
+                        <a href="article.html?id=3">
+                            Omoda E5 in Noble trim - pictures </a>
+                    </h1>
+                    
+                    <p>Pictures of the electric Omode E5 SUV being driven on UK roads. Pictures taken by Auto Express senior photographer Pete Gibson</p>
+                        <relative-time time="2024-09-17T10:32:45Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://cdn.mos.cms.futurecdn.net/6xqynicLzH6sSskfiNyWoT-1200-80.jpg">
+                    <h1 class="title">
+                        <a href="article.html?id=4">
+                            Renault, Alpine and Citroën help the 2024 Paris Motor Show return to form </a>
+                    </h1>
+                    
+                    <p>Explore the most delectable debuts at the Paris Motor Show 2024 – or Mondial de l'Auto – including designs from France's big car makers and niche machines from around the world</p>
+                        <relative-time time="2024-10-13T10:25:24Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://www.computerworld.com/wp-content/uploads/2024/10/3567767-0-90640600-1729160617-IDG-Germany-Intel-September-News.jpg?quality=50&strip=all&w=1024">
+                    <h1 class="title">
+                        <a href="article.html?id=5">
+                            Chinese cybersecurity association urges review of Intel products </a>
+                    </h1>
+                    
+                    <p>The Cybersecurity Association of China (CSAC) has urged a security review of Intel products sold in the country, claiming the US semiconductor firm poses ongoing threats to China’s national security and interests.</p>
+                        <relative-time time="2024-10-01T10:22:56Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/images/ic/1920x1080/p0jxm0pn.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=6">
+                            New Study Reveals the Benefits of Mindfulness for Mental Health</a>
+                    </h1>
+                    
+                    <p>Recent research highlights the positive impact of mindfulness practices on mental well-being, suggesting that even short daily sessions can significantly reduce stress and anxiety levels.</p>
+                        <relative-time time="2024-10-28T09:00:00Z"></relative-time>
+                    </div>    
+            </article>
+        </custom-article>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
+
+

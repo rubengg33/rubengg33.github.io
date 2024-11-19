@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <custom-search class="menu-container">
+        <div class="flex p-10 shadow-md min-h-60px">
+            <button class="menu-toggle transparent">≡</button>
+            <aside class="menu-sidebar">
+            </aside>
+            <span class="logo">
+                <a href="index.html">
+                    <span class="logo-item">R</span>
+                    <span class="logo-item">U</span>
+                    <span class="logo-item">B</span>
+                    <span class="logo-item">É</span>
+                    <span class="logo-item">N</span>
+                </a>
+            </span>
+            <button class="dialog-search transparent">🔍</button>
+        </div>
+        <nav class="navbar">
+            <button class="menu-close"><i class="bi bi-x"></i></button>
+            <ul class="flex nav-list">
+                <li class="hijos"><a href="index.html">Home</a></li>
+                <li class="hijos"><a href="news.html">News</a></li>
+                <li class="hijos"><a href="usselection.html">US Selection</a></li>
+                <li class="hijos"><a href="sport.html">Sport</a></li>
+                <li class="hijos active"><a href="business.html">Business</a></li>
+            </ul>
+        </nav>
+        <dialog>
+            <button class="close-btn">🗙</button>
+            <h1>Search</h1>
+            <input type="search" id="site-search" name="q" />
+    
+            <template>
+                <li>
+                    <div class="flex flex-col items-center card">
+                        <img class="object-cover item-image" src="https://flowbite.com/docs/images/blog/image-4.jpg">
+                        <div class="flex flex-col justify-between">
+                            <h5 class="item-title">
+                                <a href="article.html?id={id}">
+                                    {value}
+                                </a>
+                            </h5>
+                            <p class="item-description">Here are the biggest enterprise technology acquisitions of 2021 so
+                                far, in
+                                reverse chronological order.
+                            </p>
+                            <relative-time time="Wed Oct 16 2024 11:12:41 GMT+0200" />
+                        </div>
+                    </div>
+                </li>
+            </template>
+    
+            <ul id="search-results">
+            </ul>
+        </dialog>
+    </custom-search>
+    
+    <main>
+        <custom-article>
+            <article class="block">
+                
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/1024/cpsprodpb/c41c/live/4c6b77d0-9592-11ef-8f04-87373314615d.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=25">
+                          Global Economic Trends to Watch in 2024</a>
+                    </h1>
+                    
+                    <p>As we approach 2024, experts predict key economic trends that could shape the global business landscape.</p>
+                        <relative-time time="2024-10-29T08:00:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                  <img class="article-img" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/f0a0/live/28869f40-95c2-11ef-9035-b130616828c2.jpg.webp">
+                  <h1 class="title">
+                      <a href="article.html?id=26">
+                        Tech Stocks Rally: What Investors Need to Know </a>
+                  </h1>
+                  
+                  <p>Tech stocks have seen a significant rally, prompting investors to reassess their portfolios as earnings reports come in.</p>
+                      <relative-time time="2024-10-27T14:30:00Z"></relative-time>
+              </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/f9f8/live/94af0710-95e6-11ef-9607-9df2d810c28b.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=27">
+                          Small Businesses Struggle Amid Rising Costs</a>
+                    </h1>
+                    
+                    <p>Small businesses are facing challenges due to rising operational costs and inflation, impacting their profitability.</p>
+                        <relative-time time="2024-10-25T12:15:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/1536/cpsprodpb/0445/live/bbc403a0-9055-11ef-b11a-eda09aca0cf9.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=28">
+                          US Stocks: Market Outlook for the Final Quarter</a>
+                    </h1>
+                    
+                    <p>Analysts provide insights into the stock market outlook as we head into the final quarter of 2024, focusing on key sectors.</p>
+                        <relative-time time="2024-10-24T10:00:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/480/cpsprodpb/cd0b/live/0c2f0ca0-955a-11ef-ba4d-5b04a90bcb33.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=29">
+                          Top Business Trends to Follow in 2024</a>
+                    </h1>
+                    
+                    <p>An overview of the top business trends expected to impact industries in 2024, including sustainability and digital transformation.</p>
+                        <relative-time time="2024-10-22T11:30:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/480/cpsprodpb/abce/live/cf4008d0-954f-11ef-8b5c-f156af5ee6bf.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=30">
+                          US Economy: Forecast for the Coming Year</a>
+                    </h1>
+                    
+                    <p>A comprehensive forecast of the US economy for 2024, examining key indicators and potential challenges.</p>
+                        <relative-time time="2024-10-19T09:45:00Z"></relative-time>
+                    </div>    
+            </article>
+        </custom-article>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
+
+

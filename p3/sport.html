@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <custom-search class="menu-container">
+        <div class="flex p-10 shadow-md min-h-60px">
+            <button class="menu-toggle transparent">≡</button>
+            <aside class="menu-sidebar">
+            </aside>
+            <span class="logo">
+                <a href="index.html">
+                    <span class="logo-item">R</span>
+                    <span class="logo-item">U</span>
+                    <span class="logo-item">B</span>
+                    <span class="logo-item">É</span>
+                    <span class="logo-item">N</span>
+                </a>
+            </span>
+            <button class="dialog-search transparent">🔍</button>
+        </div>
+        <nav class="navbar">
+            <button class="menu-close"><i class="bi bi-x"></i></button>
+            <ul class="flex nav-list">
+                <li class="hijos"><a href="index.html">Home</a></li>
+                <li class="hijos"><a href="news.html">News</a></li>
+                <li class="hijos"><a href="usselection.html">US Selection</a></li>
+                <li class="hijos active"><a href="sport.html">Sport</a></li>
+                <li class="hijos"><a href="business.html">Business</a></li>
+            </ul>
+        </nav>
+        <dialog>
+            <button class="close-btn">🗙</button>
+            <h1>Search</h1>
+            <input type="search" id="site-search" name="q" />
+    
+            <template>
+                <li>
+                    <div class="flex flex-col items-center card">
+                        <img class="object-cover item-image" src="https://flowbite.com/docs/images/blog/image-4.jpg">
+                        <div class="flex flex-col justify-between">
+                            <h5 class="item-title">
+                                <a href="article.html?id={id}">
+                                    {value}
+                                </a>
+                            </h5>
+                            <p class="item-description">Here are the biggest enterprise technology acquisitions of 2021 so
+                                far, in
+                                reverse chronological order.
+                            </p>
+                            <relative-time time="Wed Oct 16 2024 11:12:41 GMT+0200" />
+                        </div>
+                    </div>
+                </li>
+            </template>
+    
+            <ul id="search-results">
+            </ul>
+        </dialog>
+    </custom-search>
+    
+    <main>
+        <custom-article>
+            <article class="block">
+                
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e477/live/f4a0c530-95de-11ef-9260-19e6a950e830.jpg.webp">
+                    <h1 class="title">
+                        <a href="article.html?id=19">
+                          NFL Week 8 Preview: Key Matchups to Watch</a>
+                    </h1>
+                    
+                    <p>As the NFL season heats up, Week 8 features some critical matchups that could shape playoff standings.</p>
+                        <relative-time time="2024-10-29T10:00:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                  <img class="article-img" src="https://ichef.bbci.co.uk/news/416/cpsprodpb/4d81/live/e62ff790-8f9f-11ef-b3c2-754b6219680e.png">
+                  <h1 class="title">
+                      <a href="article.html?id=20">
+                        NBA Season Tips Off: Teams to Watch This Year </a>
+                  </h1>
+                  
+                  <p>The NBA season is back, and fans are excited to see which teams will rise to the occasion and contend for the championship.</p>
+                      <relative-time time="2024-10-26T14:30:00Z"></relative-time>
+              </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/ace/standard/480/cpsprodpb/44b7/live/7febe7d0-960e-11ef-83ca-a3329ade90f4.jpg">
+                    <h1 class="title">
+                        <a href="article.html?id=21">
+                          Premier League Update: Top Teams Face Tough Challenges</a>
+                    </h1>
+                    
+                    <p>The Premier League continues to deliver surprises as top teams face tough challenges in the latest round of fixtures.</p>
+                        <relative-time time="2024-10-28T09:00:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/416/cpsprodpb/6964/live/146eba80-9110-11ef-a742-17f0640e0e62.jpg">
+                    <h1 class="title">
+                        <a href="article.html?id=22">
+                          World Series 2024: A Preview of the Championship</a>
+                    </h1>
+                    
+                    <p>As the World Series approaches, fans eagerly anticipate the championship showdown between the top MLB teams.</p>
+                        <relative-time time="2024-10-25T12:00:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/416/cpsprodpb/1f1b/live/e9bbd610-8d31-11ef-bee0-39b1bce7fdf1.jpg">
+                    <h1 class="title">
+                        <a href="article.html?id=23">
+                          Top 5 NBA Teams to Watch This Season</a>
+                    </h1>
+                    
+                    <p>Analyzing the top five NBA teams poised to make a deep playoff run this season, highlighting key players and strategies.</p>
+                        <relative-time time="2024-10-20T11:30:00Z"></relative-time>
+                </div>
+                <div class="grids">
+                    <img class="article-img" src="https://ichef.bbci.co.uk/news/416/cpsprodpb/b856/live/2ef7a4a0-940a-11ef-918b-f53bd5fe392e.jpg">
+                    <h1 class="title">
+                        <a href="article.html?id=24">
+                          UFC 300: What to Expect from the Upcoming Fights</a>
+                    </h1>
+                    
+                    <p>UFC 300 is set to deliver thrilling matchups, with fighters looking to make a statement in the octagon.</p>
+                        <relative-time time="2024-10-23T14:00:00Z"></relative-time>
+                    </div>    
+            </article>
+        </custom-article>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
+
+
