@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi portfolio</title>
+  <title>Mi Landing Page con Tailwind CSS</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Configuración de Tailwind CSS -->
@@ -29,11 +29,11 @@
   <!-- Encabezado -->
   <header class="bg-white shadow">
     <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="text-2xl font-bold text-gray-800">Rubén</div>
+      <div class="text-2xl font-bold text-gray-800">MiLogo</div>
       <nav class="space-x-4">
         <a href="#" class="text-gray-800 hover:text-primary">Inicio</a>
-        <a href="#practicas" class="text-gray-800 hover:text-primary">Prácticas</a>
-        <a href="#contacto" class="text-gray-800 hover:text-primary">Contacto</a>
+        <a href="#" class="text-gray-800 hover:text-primary">Prácticas</a>
+        <a href="#" class="text-gray-800 hover:text-primary">Contacto</a>
       </nav>
     </div>
   </header>
@@ -43,7 +43,7 @@
     <div class="container mx-auto px-6 py-16 text-center">
       <h1 class="text-4xl font-bold text-gray-800 mb-4">Bienvenido a Mi portfolio</h1>
       <p class="text-gray-700 mb-8">Aqui encontras todas mis practicas de Desarrollo de Interfaces</p>
-      <a href="https://github.com/rubengg33" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800">Github</a>
+      <a href="#" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800">Comenzar</a>
     </div>
   </section>
 
@@ -55,15 +55,15 @@
     <p class="text-gray-600 mt-4">Detalles</p>
   </div>
   <!-- Grid para las características -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" section="#practicas">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <!-- Característica 1 -->
     <a href="./p1/index.html" class="hover:shadow-xl transition">
       <div class="bg-white p-6 rounded-lg shadow">
         <div class="mb-4">
           <!-- Icono -->
-            <svg class="w-12 h-12 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+          <svg class="w-12 h-12 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </div>
         <h3 class="text-xl font-bold text-gray-800 mb-2">Practica Uno</h3>
         <p class="text-gray-600">Grid de imagenes.</p>
@@ -165,13 +165,19 @@
   </section>
 
   <!-- Llamado a la Acción -->
-
+  <section class="bg-primary">
+    <div class="container mx-auto px-6 py-16 text-center text-white">
+      <h2 class="text-3xl font-bold mb-4">¿Listo para Comenzar?</h2>
+      <p class="mb-8">Únete a nosotros y lleva tu negocio al siguiente nivel.</p>
+      <a href="#" class="bg-secondary text-primary px-6 py-3 rounded-full hover:bg-yellow-300">Regístrate Ahora</a>
+    </div>
+  </section>
 
   <!-- Pie de Página -->
   <footer class="bg-gray-800">
     <div class="container mx-auto px-6 py-8 text-gray-400">
       <div class="flex flex-col md:flex-row justify-between">
-        <p>&copy; 2024 Rubén García. Todos los derechos reservados.</p>
+        <p>&copy; 2024 MiEmpresa. Todos los derechos reservados.</p>
         <div class="space-x-4">
           <a href="#" class="hover:text-white">Privacidad</a>
           <a href="#" class="hover:text-white">Términos</a>
