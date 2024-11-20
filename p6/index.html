@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi Landing Page con Tailwind CSS</title>
+  <title>👾 Game Store</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Configuración de Tailwind CSS -->
@@ -21,6 +21,16 @@
       },
     }
   </script>
+  <style>
+    anchor {
+      anchor-name: --anchor-1;
+    }
+    target {
+      position-anchor: --anchor-1;
+      position-area: span-top right;
+      margin: 0;
+    }
+  </style>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -29,149 +39,78 @@
   <!-- Encabezado -->
   <header class="bg-white shadow">
     <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="text-2xl font-bold text-gray-800">MiLogo</div>
+      <div class="text-2xl font-bold text-gray-800">Gadgets<b>Store</b></div>
       <nav class="space-x-4">
         <a href="#" class="text-gray-800 hover:text-primary">Inicio</a>
-        <a href="#" class="text-gray-800 hover:text-primary">Prácticas</a>
-        <a href="#" class="text-gray-800 hover:text-primary">Contacto</a>
+        <a href="#" class="text-gray-800 hover:text-primary">Carrito</a>
       </nav>
     </div>
   </header>
 
   <!-- Sección de Héroe -->
-  <section class="bg-secondary">
-    <div class="container mx-auto px-6 py-16 text-center">
-      <h1 class="text-4xl font-bold text-gray-800 mb-4">Bienvenido a Mi portfolio</h1>
-      <p class="text-gray-700 mb-8">Aqui encontras todas mis practicas de Desarrollo de Interfaces</p>
-      <a href="#" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800">Comenzar</a>
+  <section class="relative bg-gray-900 h-screen">
+    <!-- Fondo con imagen -->
+    <div class="absolute inset-0">
+      <img src="Hero.jpg" alt="Hero background" class="w-full h-full object-cover opacity-70">
+    </div>
+    <!-- Contenido del héroe -->
+    <div class="relative z-10 container mx-auto px-6 py-80 text-center">
+      <h1 class="text-5xl font-bold text-white mb-4">Tu tienda de Smartwatches y Gadgets Innovadores <span>⌚🔋</span></h1>
+      <p class="text-lg text-gray-300 mb-8">
+        Explora la última tecnología con nuestros smartwatches y gadgets de última generación, diseñados para mejorar tu vida diaria con estilo y funcionalidad.
+      </p>
+      <a href="#products" class="bg-blue-500 text-white px-6 py-3 rounded-full text-lg font-medium hover:bg-blue-600 transition duration-300">Ver productos</a>
     </div>
   </section>
-
-  <!-- Sección de Características -->
-  <!-- Sección de Características -->
-<section class="container mx-auto px-6 py-16">
-  <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold text-gray-800">Mis prácticas</h2>
-    <p class="text-gray-600 mt-4">Detalles</p>
-  </div>
-  <!-- Grid para las características -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- Característica 1 -->
-    <a href="./p1/index.html" class="hover:shadow-xl transition">
-      <div class="bg-white p-6 rounded-lg shadow">
-        <div class="mb-4">
-          <!-- Icono -->
-          <svg class="w-12 h-12 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-gray-800 mb-2">Practica Uno</h3>
-        <p class="text-gray-600">Grid de imagenes.</p>
-      </div>
-    </a>
-    <!-- Característica 2 -->
-    <a href="./p2/index.html" class="hover:shadow-xl transition">
-      <div class="bg-white p-6 rounded-lg shadow">
-        <div class="mb-4">
-          <!-- Icono -->
-          <svg class="w-12 h-12 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-gray-800 mb-2">Practica Dos</h3>
-        <p class="text-gray-600">Grid de imagenes con botones para cambiar la imagen.</p>
-      </div>
-    </a>
-    <!-- Característica 3 -->
-    <a href="./p3/index.html" class="hover:shadow-xl transition">
-      <div class="bg-white p-6 rounded-lg shadow">
-        <div class="mb-4">
-          <!-- Icono -->
-          <svg class="w-12 h-12 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-gray-800 mb-2">Practica Tres</h3>
-        <p class="text-gray-600">Página similar a la BBC Con Grid, menu desplegable y Web Components.</p>
-      </div>
-    </a>
-    <!-- Práctica 4 -->
-    <a href="./p4/index.html" class="hover:shadow-xl transition">
-    <div class="bg-white p-6 rounded-lg shadow">
-      <div class="mb-4">
-        <!-- Icono -->
-        <svg class="w-12 h-12 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold text-gray-800 mb-2">Practica Cuatro</h3>
-      <p class="text-gray-600">Similar a la Practica 3 pero con menu popover.</p>
-    </div>
-  </a>
-  <!-- Práctica 5 -->
-  <a href="index.html" class="hover:shadow-xl transition">
-    <div class="bg-white p-6 rounded-lg shadow">
-      <div class="mb-4">
-        <!-- Icono -->
-        <svg class="w-12 h-12 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold text-gray-800 mb-2">Practica Cinco</h3>
-      <p class="text-gray-600">Descripción breve de la característica cuatro.</p>
-    </div>
-  </a>
-  <a href="./p6/index.html" class="hover:shadow-xl transition">
-    <div class="bg-white p-6 rounded-lg shadow">
-      <div class="mb-4">
-        <!-- Icono -->
-        <svg class="w-12 h-12 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold text-gray-800 mb-2">Practica Seis</h3>
-      <p class="text-gray-600">Descripción breve de la característica cuatro.</p>
-    </div>
-  </a>
-  </div>
-</section>
-
 
   <!-- Sección de Grid de Imágenes -->
-  <section class="container mx-auto px-6 py-16">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-800">Prueba de Imágenes</h2>
-      <p class="text-gray-600 mt-4">Una muestra de las prácticas.</p>
+  <section id="products" class="container mx-auto px-6 py-16">
+    <template id="product-item">
+      <div class="max-w-sm rounded overflow-hidden shadow-lg flex flex-col">
+        <!-- Imagen con tamaño fijo -->
+        <img class="h-64 w-full object-cover" src="">
+        
+        <div class="px-6 py-4 flex flex-col flex-grow">
+          <div class="font-bold text-xl mb-2 title"></div>
+          <p class="text-gray-700 text-base description">
+            <p class="price"></p>
+            <p class="rating"></p>
+          </p>
+        </div>
+    
+        <!-- Contenedor para los tags con alineación consistente -->
+        <div class="px-6 pt-4 pb-2 flex flex-wrap tags">
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>  
+        </div>
+        
+        <!-- Contenedor de botones -->
+        <div class="px-6 pt-4 pb-2 flex-grow flex flex-col justify-end">
+          <!-- Botón Ver más -->
+          <button anchor class="bg-primary text-white px-6 py-3 mb-2 hover:bg-blue-800">Ver más</button>
+          <div target popover class="absolute bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+            <p class="features"></p>
+          </div>
+          <!-- Botón Add to Cart -->
+          <button class="add2cart bg-primary text-white px-6 py-3 hover:bg-blue-800">Add to Cart</button>
+        </div>
+      </div>
+    </template>
+
+    <div class="container mx-auto px-6 py-16">
+      <h2 class="text-3xl">
+        Cart
+      </h2>
+      <custom-cart>
+
+      </custom-cart>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <!-- Imagen 1 -->
-      <div class="overflow-hidden rounded-lg">
-        <img src="https://placehold.co/600x400/EEE/31343C" alt="Descripción de la imagen 1" class="w-full h-full object-cover">
-      </div>
-      <!-- Imagen 2 -->
-      <div class="overflow-hidden rounded-lg">
-        <img src="https://placehold.co/600x400/EEE/31343C" alt="Descripción de la imagen 2" class="w-full h-full object-cover">
-      </div>
-      <!-- Imagen 3 -->
-      <div class="overflow-hidden rounded-lg">
-        <img src="https://placehold.co/600x400/EEE/31343C" alt="Descripción de la imagen 3" class="w-full h-full object-cover">
-      </div>
-      <!-- Imagen 4 -->
-      <div class="overflow-hidden rounded-lg">
-        <img src="https://placehold.co/600x400/EEE/31343C" alt="Descripción de la imagen 4" class="w-full h-full object-cover">
-      </div>
-      <!-- Puedes añadir más imágenes según sea necesario -->
-    </div>
+
+    <products-items class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Aquí Grid items -->
+
+    </products-items>
   </section>
 
-  <!-- Llamado a la Acción -->
-  <section class="bg-primary">
-    <div class="container mx-auto px-6 py-16 text-center text-white">
-      <h2 class="text-3xl font-bold mb-4">¿Listo para Comenzar?</h2>
-      <p class="mb-8">Únete a nosotros y lleva tu negocio al siguiente nivel.</p>
-      <a href="#" class="bg-secondary text-primary px-6 py-3 rounded-full hover:bg-yellow-300">Regístrate Ahora</a>
-    </div>
-  </section>
 
   <!-- Pie de Página -->
   <footer class="bg-gray-800">
@@ -186,5 +125,6 @@
       </div>
     </div>
   </footer>
+  <script src="gadgets-store.js"></script>
 </body>
 </html>
