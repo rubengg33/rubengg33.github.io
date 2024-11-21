@@ -80,6 +80,11 @@ class ProductsItems extends HTMLElement {
     render() {
       this.products = this.load()
       this.innerHTML = ''
+      const icon = document.querySelector('.cart-icon');
+      const customCart = document.querySelector('custom-cart');
+      icon.addEventListener('click', () => {
+        customCart.classList.toggle('hidden')
+      })
       this.products.map(product => {
         this.innerHTML += product.title
       })

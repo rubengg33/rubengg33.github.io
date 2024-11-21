@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>👾 Game Store</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Configuración de Tailwind CSS -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0D3B66',
+            secondary: '#FAF0CA',
+          },
+          fontFamily: {
+            sans: ['Roboto', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    anchor {
+      anchor-name: --anchor-1;
+    }
+    target {
+      position-anchor: --anchor-1;
+      position-area: span-top right;
+      margin: 0;
+    }
+  </style>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans">
+  <!-- Encabezado -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="text-2xl font-bold text-gray-800">Game<b>Store</b></div>
+      <nav class="space-x-4">
+        <a href="#" class="text-gray-800 hover:text-primary">Inicio</a>
+        <a href="#" class="text-gray-800 hover:text-primary">Carrito</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sección de Héroe -->
+  <section class="bg-secondary">
+    <div class="container mx-auto px-6 py-16 text-center">
+      <h1 class="text-4xl font-bold text-gray-800 mb-4">Bienvenido a la store de videojuegos</h1>
+      <a href="#" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800">Ver juegos</a>
+    </div>
+  </section>
+
+  <!-- Sección de Grid de Imágenes -->
+  <section class="container mx-auto px-6 py-16">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800">Galería de Imágenes</h2>
+      <p class="text-gray-600 mt-4">Una muestra de nuestro trabajo.</p>
+    </div>
+    <template id="product-item">
+      <div class="max-w-sm rounded overflow-hidden shadow-lg">
+        <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+          <p class="text-gray-700 text-base">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+          </p>
+        </div>
+        <div class="px-6 pt-4 pb-2">
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+        </div>
+        <!-- Button more info -->
+        <div class="px-6 pt-4 pb-2">
+          <button anchor class="bg-primary text-white px-6 py-3 hover:bg-blue-800">Ver más</button>
+          <div target popover class="absolute bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+            <p class="text-gray-800">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+          </div>
+          <button
+            class="add2cart bg-primary text-white px-6 py-3 hover:bg-blue-800">Add to Cart</button>
+        </div>
+      </div>
+    </template>
+
+    <div class="container mx-auto px-6 py-16 hidden">
+      <h2 class="text-3xl">
+        Cart
+      </h2>
+      <custom-cart/>
+    </div>
+
+    <products-items class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Aquí Grid items -->
+    </products-items>
+  </section>
+
+
+  <!-- Pie de Página -->
+  <footer class="bg-gray-800">
+    <div class="container mx-auto px-6 py-8 text-gray-400">
+      <div class="flex flex-col md:flex-row justify-between">
+        <p>&copy; 2024 MiEmpresa. Todos los derechos reservados.</p>
+        <div class="space-x-4">
+          <a href="#" class="hover:text-white">Privacidad</a>
+          <a href="#" class="hover:text-white">Términos</a>
+          <a href="#" class="hover:text-white">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="store-game.js"></script>
+</body>
+</html>

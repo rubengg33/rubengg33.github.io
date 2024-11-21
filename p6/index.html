@@ -22,14 +22,27 @@
     }
   </script>
   <style>
-    anchor {
-      anchor-name: --anchor-1;
-    }
-    target {
-      position-anchor: --anchor-1;
-      position-area: span-top right;
-      margin: 0;
-    }
+    [popover] {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+#anchor_1 {
+  anchor-name: --anchor_1;
+}
+[popover] {
+  border: 1px solid;
+  padding: 1rem;
+  position: absolute;
+  width: 10rem;
+  position-anchor: --anchor_1;
+  top: anchor(--anchor_1 bottom); 
+  left: anchor(--anchor_1 right); 
+  
+/*  inset-block-start: anchor(--anchor_1 bottom);*/
+/*  inset-inline-start: anchor(--anchor_1 right);*/
+}
+    
   </style>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,11 +51,23 @@
 <body class="font-sans">
   <!-- Encabezado -->
   <header class="bg-white shadow">
-    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="text-2xl font-bold text-gray-800">Gadgets<b>Store</b></div>
+    <div class="container px-6 py-4 flex items-center justify-between">
+      <button id="anchor_1"  popovertarget="popover_1" class="text-2xl font-bold text-gray-800">GadgetsStore</button>
+      <ul id="popover_1" popover>
+        <li><a href="finances.html">Finances</a></li>
+        <li><a href="sport.html">Sport</a></li>
+        <li><a href="technology.html">Technology</a></li>
+        <li><a href="worldnews.html">World News</a></li>
+      </ul>
       <nav class="space-x-4">
         <a href="#" class="text-gray-800 hover:text-primary">Inicio</a>
-        <a href="#" class="text-gray-800 hover:text-primary">Carrito</a>
+        <button class="cart-icon text-gray-800 hover:text-primary relative">
+          🛒
+          <span id="cart-counter" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            0
+          </span> 
+        </button>
+        <custom-cart class="hidden"></custom-cart>
       </nav>
     </div>
   </header>
@@ -71,7 +96,7 @@
         <img class="h-64 w-full object-cover" src="">
         
         <div class="px-6 py-4 flex flex-col flex-grow">
-          <div class="font-bold text-xl mb-2 title"></div>
+          <h3 class="font-bold text-xl mb-2 title"></h3>
           <p class="text-gray-700 text-base description">
             <p class="price"></p>
             <p class="rating"></p>
@@ -89,6 +114,7 @@
           <button anchor class="bg-primary text-white px-6 py-3 mb-2 hover:bg-blue-800">Ver más</button>
           <div target popover class="absolute bg-white border border-gray-200 rounded-lg shadow-lg p-4">
             <p class="features"></p>
+            <p class="tags"></p>
           </div>
           <!-- Botón Add to Cart -->
           <button class="add2cart bg-primary text-white px-6 py-3 hover:bg-blue-800">Add to Cart</button>
@@ -100,9 +126,6 @@
       <h2 class="text-3xl">
         Cart
       </h2>
-      <custom-cart>
-
-      </custom-cart>
     </div>
 
     <products-items class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
