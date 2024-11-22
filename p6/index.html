@@ -22,7 +22,7 @@
     }
   </script>
   <style>
-    [popover] {
+ [popover] {
   margin: 0;
   padding: 0;
   border: 0;
@@ -38,10 +38,34 @@
   position-anchor: --anchor_1;
   top: anchor(--anchor_1 bottom); 
   left: anchor(--anchor_1 right); 
-  
+
 /*  inset-block-start: anchor(--anchor_1 bottom);*/
 /*  inset-inline-start: anchor(--anchor_1 right);*/
 }
+[popover] {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+#anchor_2 {
+  anchor-name: --anchor2;
+}
+[popover] {
+  border: 1px solid;
+  padding: 1rem;
+  position: absolute;
+  width: 10rem;
+  position-anchor: --anchor_2;
+  top: anchor(--anchor_2 bottom); 
+  left: anchor(--anchor_2 right); 
+
+/*  inset-block-start: anchor(--anchor_1 bottom);*/
+/*  inset-inline-start: anchor(--anchor_1 right);*/
+}
+
+    /* .cart-icon[popover]:hover ~ #popover_2 {
+      display: block;
+    } */
     
   </style>
   <!-- Google Fonts -->
@@ -54,20 +78,30 @@
     <div class="container px-6 py-4 flex items-center justify-between">
       <button id="anchor_1"  popovertarget="popover_1" class="text-2xl font-bold text-gray-800">GadgetsStore</button>
       <ul id="popover_1" popover>
-        <li><a href="finances.html">Finances</a></li>
-        <li><a href="sport.html">Sport</a></li>
-        <li><a href="technology.html">Technology</a></li>
-        <li><a href="worldnews.html">World News</a></li>
+        <li>Finances</li>
+        <li>Sport</li>
+        <li>Technology</li>
+        <li>World News</li>
       </ul>
       <nav class="space-x-4">
         <a href="#" class="text-gray-800 hover:text-primary">Inicio</a>
-        <button class="cart-icon text-gray-800 hover:text-primary relative">
+        <button id="anchor_2"  popovertarget="popover_2" class="cart-icon text-gray-800 hover:text-primary relative">
           🛒
           <span id="cart-counter" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
             0
           </span> 
         </button>
-        <custom-cart class="hidden"></custom-cart>
+        <custom-cart>
+          <ul id="popover_2" popover>
+            <li><strong>Productos en el carrito:</strong></li>
+            <li><p class="title"></p>
+            <p class="price"></p>
+            <p class="features"></p> 
+            </li>
+            <li class="text-right mt-2"><button class="bg-primary text-white px-3 py-2 rounded">Finalizar compra</button></li>
+          </ul>
+        
+        
       </nav>
     </div>
   </header>
@@ -130,7 +164,6 @@
 
     <products-items class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <!-- Aquí Grid items -->
-
     </products-items>
   </section>
 
