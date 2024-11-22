@@ -42,37 +42,43 @@
 /*  inset-block-start: anchor(--anchor_1 bottom);*/
 /*  inset-inline-start: anchor(--anchor_1 right);*/
 }
-[popover] {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-#anchor_2 {
-  anchor-name: --anchor2;
-}
-[popover] {
-  border: 1px solid;
-  padding: 1rem;
+#popover_2 {
+  display: none;
   position: absolute;
-  width: 10rem;
-  position-anchor: --anchor_2;
-  top: anchor(--anchor_2 bottom); 
-  left: anchor(--anchor_2 right); 
-
-/*  inset-block-start: anchor(--anchor_1 bottom);*/
-/*  inset-inline-start: anchor(--anchor_1 right);*/
+  top: 56px;
+    right: 0;
+    left: 1330px;
+    z-index: 10;
+    width: auto;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-    /* .cart-icon[popover]:hover ~ #popover_2 {
-      display: block;
-    } */
-    
+#popover_2:popover-open {
+  display: block;
+}
+.cart-icon {
+      position: relative;
+    }
+
+    /* Añadimos margen y padding extra a los items dentro del popover */
+    .product-item {
+      padding: 0.75rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .product-item:last-child {
+      border-bottom: none;
+    }
   </style>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="font-sans">
+<body class="font-sans overflow-x-hidden">
   <!-- Encabezado -->
   <header class="bg-white shadow">
     <div class="container px-6 py-4 flex items-center justify-between">
@@ -83,7 +89,7 @@
         <li>Technology</li>
         <li>World News</li>
       </ul>
-      <nav class="space-x-4">
+      <nav class="relative space-x-4">
         <a href="#" class="text-gray-800 hover:text-primary">Inicio</a>
         <button id="anchor_2"  popovertarget="popover_2" class="cart-icon text-gray-800 hover:text-primary relative">
           🛒
@@ -92,16 +98,39 @@
           </span> 
         </button>
         <custom-cart>
-          <ul id="popover_2" popover>
-            <li><strong>Productos en el carrito:</strong></li>
-            <li><p class="title"></p>
-            <p class="price"></p>
-            <p class="features"></p> 
-            </li>
-            <li class="text-right mt-2"><button class="bg-primary text-white px-3 py-2 rounded">Finalizar compra</button></li>
-          </ul>
-        
-        
+          <!-- Popover -->
+          <div id="popover_2" popover class="absolute bg-white border bg-white border shadow-md p-4 rounded top-0 right-0 z-1 w-80 sm:w-96 max-w-full overflow-x-hidden">
+            <strong class="flex items-left justify-left">Productos en el carrito:</strong>
+            <div id="cart-content">
+              <!-- Aquí se añadirán los productos clonados del template -->
+            </div>
+            <div class="cart-footer mt-2 flex justify-end items-center">
+              <button class="bg-primary text-white px-3 py-2 rounded">Finalizar compra</button>
+            </div>
+          </div>
+          <!-- Template para productos -->
+          <template id="cart-template">
+            <div class="relative product-item border-b py-2 flex flex-col items-start gap-4">
+              <img class="image w-16 h-16" src="" alt="">
+              <h3 class="title font-semibold"></h3>
+            
+              <p class="features text-sm text-gray-500"></p>
+              <p class="absolute price font-bold text-[#0D3B66] flex items-center top-0 right-0 gap-1 mt-10">
+                <span class="numeric-price"></span>
+                <span class="euro-symbol">€</span>
+              </p>
+              <span>
+                <div class="absolute cart-icon flex items-center gap-2 bg-gray-200 p-4 rounded 
+                top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <button class="decrease-quantity text-xs bg-gray-300 px-2 py-1 rounded">-</button>
+                  <span class="quantity text-sm"></span>
+                  <button class="increase-quantity text-xs bg-gray-300 px-2 py-1 rounded">+</button>
+                </div>
+              </span>
+              <button class="absolute remove-button text-sm text-red-500 flex items-right bottom-0 right-0 justify-end">Eliminar</button>
+            </div>
+          </template>
+        </custom-cart>
       </nav>
     </div>
   </header>
@@ -124,29 +153,31 @@
 
   <!-- Sección de Grid de Imágenes -->
   <section id="products" class="container mx-auto px-6 py-16">
+    <products-items class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Aquí Grid items -->
     <template id="product-item">
       <div class="max-w-sm rounded overflow-hidden shadow-lg flex flex-col">
         <!-- Imagen con tamaño fijo -->
         <img class="h-64 w-full object-cover" src="">
         
-        <div class="px-6 py-4 flex flex-col flex-grow">
+        <div class="relative px-6 py-4 flex flex-col flex-grow">
           <h3 class="font-bold text-xl mb-2 title"></h3>
-          <p class="text-gray-700 text-base description">
-            <p class="price"></p>
-            <p class="rating"></p>
-          </p>
+          <p class="text-gray-700 text-base description mb-12"></p>
+            <p class="absolute price right-2 bottom-0 mb-8"></p>
+            <p class="absolute rating right-1 bottom-0"></p>
         </div>
     
         <!-- Contenedor para los tags con alineación consistente -->
-        <div class="px-6 pt-4 pb-2 flex flex-wrap tags">
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>  
-        </div>
+        
         
         <!-- Contenedor de botones -->
         <div class="px-6 pt-4 pb-2 flex-grow flex flex-col justify-end">
           <!-- Botón Ver más -->
           <button anchor class="bg-primary text-white px-6 py-3 mb-2 hover:bg-blue-800">Ver más</button>
           <div target popover class="absolute bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+            <div class="px-6 pt-4 pb-2 flex flex-wrap tags">
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>  
+        </div>
             <p class="features"></p>
             <p class="tags"></p>
           </div>
@@ -155,16 +186,12 @@
         </div>
       </div>
     </template>
+    </products-items>
 
     <div class="container mx-auto px-6 py-16">
       <h2 class="text-3xl">
-        Cart
       </h2>
     </div>
-
-    <products-items class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <!-- Aquí Grid items -->
-    </products-items>
   </section>
 
 

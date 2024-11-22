@@ -1,0 +1,54 @@
+para el finalizarcompra carrito, como empieza mas o menos,
+render() {
+    this.products = this.load();
+    this.innerHTML = ''; // Limpia contenido previo
+
+    if (this.products.length > 0) {
+        const header = document.createElement('strong');
+        header.textContent = 'Productos en el carrito:';
+        this.appendChild(header);
+
+        this.products.map(product => {
+            if (!this.templateElement) return null;
+            const cart = this.templateElement.content.cloneNode(true);
+
+            const img = cart.querySelector('img');
+            img.src = product.image;
+
+            const title = cart.querySelector('.title');
+            title.textContent = product.title;
+
+            const description = cart.querySelector('.description');
+            description.textContent = product.description;
+
+            const price = cart.querySelector('.price');
+            price.textContent = product.price;
+
+            const featuresContainer = cart.querySelector('.features');
+            featuresContainer.innerHTML = ''; // Limpia cualquier contenido previo
+            product.features.map(feature => {
+                const featureItem = document.createElement('p');
+                featureItem.textContent = `${feature.type.charAt(0).toUpperCase() + feature.type.slice(1)}: ${feature.value}`;
+                featuresContainer.appendChild(featureItem);
+            });
+
+            this.appendChild(cart);
+        });
+
+        // Agrega el botón de "Finalizar compra"
+        const finalizeButton = document.createElement('button');
+        finalizeButton.textContent = 'Finalizar compra';
+        finalizeButton.className = 'bg-primary text-white px-3 py-2 rounded mt-4';
+        finalizeButton.addEventListener('click', () => {
+            alert('Compra finalizada');
+            localStorage.removeItem('products'); // Limpia el carrito
+            this.render(); // Actualiza el carrito
+        });
+
+        this.appendChild(finalizeButton);
+    } else {
+        const emptyMessage = document.createElement('p');
+        emptyMessage.textContent = 'El carrito está vacío.';
+        this.appendChild(emptyMessage);
+    }
+}
