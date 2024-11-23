@@ -88,6 +88,13 @@ class CustomCart extends HTMLElement {
     this.render();
   }
 
+  updateCartCounter() {
+    const cartCounter = document.querySelector('#cart-counter');
+    const totalItems = this.products.reduce((sum, product) => sum + (product.quantity || 1), 0);
+    if (cartCounter) {
+      cartCounter.textContent = totalItems;
+    }
+  }
   render() {
     this.products = this.load();
 
@@ -95,6 +102,7 @@ class CustomCart extends HTMLElement {
       // Limpia el contenido actual de #cart-content
       this.cartContent.innerHTML = '';
     }
+    let totalPrice = 0;
 
     this.products.map(product => {
       if (!this.templateElement) return null;
@@ -111,6 +119,9 @@ class CustomCart extends HTMLElement {
 
       const quantityElement = cart.querySelector('.quantity');
       quantityElement.textContent = product.quantity || 1; // Si no existe cantidad, poner 1
+      
+      const numericPrice = parseFloat(product.price.replace('€', '').trim());
+      totalPrice += numericPrice * (product.quantity || 1);
 
       const decreaseButton = cart.querySelector('.decrease-quantity');
       const increaseButton = cart.querySelector('.increase-quantity');
@@ -122,6 +133,7 @@ class CustomCart extends HTMLElement {
           product.quantity--;
           quantityElement.textContent = product.quantity;
           this.save(this.products);
+          this.render();
         }
       });
 
@@ -130,6 +142,7 @@ class CustomCart extends HTMLElement {
         product.quantity++;
         quantityElement.textContent = product.quantity;
         this.save(this.products);
+        this.render();
       });
 
       // Eliminar producto
@@ -151,10 +164,60 @@ class CustomCart extends HTMLElement {
         this.cartContent.appendChild(cart); // Añade el producto al contenedor de productos
       }
     });
+    const totalPriceElement = document.querySelector('#total-price'); 
+    if (totalPriceElement) {
+      totalPriceElement.textContent = `Total: ${totalPrice.toFixed(2)} €`;
+    }
+    this.updateCartCounter();
   }
 }
 customElements.define('custom-cart', CustomCart);
 customElements.define('products-items', ProductsItems);
+//DIALOGO
+const finalizeButton = document.querySelector('.cart-footer button'); // Botón "Finalizar compra"
+const dialog = document.querySelector('#confirmation-dialog'); // El diálogo
+const closeDialogButton = document.querySelector('#close-dialog'); // Botón para cerrar el diálogo
+const confirmPurchaseButton = document.querySelector('#confirm-purchase'); // Botón de confirmar compra
+const confirmationMessage = document.querySelector('#confirmation-message'); // Párrafo dentro del diálogo para el mensaje de confirmación
+
+// Mostrar el diálogo al hacer clic en "Finalizar compra"
+finalizeButton.addEventListener('click', () => {
+  // Restablecer el mensaje a su estado inicial cuando se abra el diálogo
+  if (confirmationMessage) {
+    confirmationMessage.textContent = 'Confirma la compra.';
+  }
+  
+  dialog.showModal(); // Muestra el diálogo
+});
+
+// Cerrar el diálogo al hacer clic en la "x"
+closeDialogButton.addEventListener('click', () => {
+  dialog.close(); // Cierra el diálogo
+});
+
+// Confirmar la compra
+confirmPurchaseButton.addEventListener('click', () => {
+  // Cambiar el mensaje dentro del diálogo solo cuando se confirma la compra
+  if (confirmationMessage) {
+    confirmationMessage.textContent = '¡Compra realizada con éxito! ¡Gracias por tu compra!';
+  }
+
+  // Vaciar el carrito
+  localStorage.removeItem('products');
+  
+  // Actualizar el carrito visualmente
+  const customCart = document.querySelector('custom-cart');
+  if (customCart) {
+    customCart.render();
+  }
+
+  // Cerrar el diálogo después de la confirmación
+  setTimeout(() => {
+    dialog.close(); // Cerrar el diálogo después de 1.5 segundos
+  }, 5000); // Retraso de 1.5 segundos para que el usuario vea el mensaje
+});
+
+
 
 
 
