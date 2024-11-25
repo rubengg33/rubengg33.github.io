@@ -1,8 +1,15 @@
+
+const getId = () => {
+  const searchParams = new URLSearchParams(location.search.slice(1));
+  return Number(searchParams.get('id'));
+}
+
 class ProductsItems extends HTMLElement {
   constructor() {
     super();
     this.templateElement = document.querySelector('#product-item');
     this.url = 'https://products-foniuhqsba-uc.a.run.app/Smartwatches%20and%20gadgets'
+    this.productId = getId();
   }
 
   async load() {
@@ -18,19 +25,18 @@ class ProductsItems extends HTMLElement {
     this.products.map(product => {
       if (!this.templateElement) return null
       const card = this.templateElement.content.cloneNode(true)
-
-      const img = card.querySelector('img')
+      const img = card.querySelector('.product-image')
       img.src = product.image
 
-      const title = card.querySelector('.title')
+      const title = card.querySelector('.product-title')
       title.textContent = product.title
 
-      const description = card.querySelector('.description')
+      const description = card.querySelector('.product-description')
       description.textContent = product.description
 
-      const price = card.querySelector('.price')
+      const price = card.querySelector('.product-price')
       price.textContent = product.price
-      const rating = card.querySelector('.rating')
+      const rating = card.querySelector('.product-rating')
       rating.textContent = product.rating + '⭐'
       const tagsContainer = card.querySelector('.tags');
       tagsContainer.innerHTML = ''; // Limpia cualquier contenido previo
@@ -66,15 +72,16 @@ class ProductsItems extends HTMLElement {
       })
 
       this.appendChild(card)
-    })
+    });
   }
 }
-
+customElements.define('products-items', ProductsItems);
 class CustomCart extends HTMLElement {
   constructor() {
     super();
     this.templateElement = document.querySelector('#cart-template');
-    this.cartContent = document.querySelector('#cart-content'); // Contenedor para los productos en el carrito
+    this.cartContent = document.querySelector('#cart-content');
+     // Contenedor para los productos en el carrito
   }
 
   load() {
@@ -127,6 +134,7 @@ class CustomCart extends HTMLElement {
       const increaseButton = cart.querySelector('.increase-quantity');
       const removeButton = cart.querySelector('.remove-button');
 
+      
       // Disminuir cantidad
       decreaseButton.addEventListener('click', () => {
         if (product.quantity > 1) {
@@ -169,53 +177,59 @@ class CustomCart extends HTMLElement {
       totalPriceElement.textContent = `Total: ${totalPrice.toFixed(2)} €`;
     }
     this.updateCartCounter();
+ // Código para renderizar el carrito Arriba
+//DIALOG para confirmar compra
+    const cartFooter = document.querySelector('.cart-footer');
+    const finalizeButton = cartFooter.querySelector('button');
+    const dialog = document.querySelector('#confirmation-dialog');
+    const closeDialogButton = document.querySelector('#close-dialog');
+    const confirmPurchaseButton = document.querySelector('#confirm-purchase');
+    const confirmationMessage = document.querySelector('#confirmation-message');
+    const emptyCartMessage = document.querySelector('#empty-cart-message'); // Mensaje de carrito vacío
+// Verificar si el carrito está vacío
+    if (this.products.length === 0) {
+      emptyCartMessage.classList.remove('hidden');
+      finalizeButton.textContent = 'Añadir Productos';
+      finalizeButton.onclick = () => {
+        // Redirigir al usuario a la sección de productos
+        window.location.href = "#products"; //  sección de productos
+      };
+    } else {
+      emptyCartMessage.classList.add('hidden'); // Ocultar mensaje si hay productos en el carrito
+      finalizeButton.textContent = 'Finalizar compra';
+      finalizeButton.onclick = () => {
+        // Mostrar el diálogo cuando se hace clic en "Finalizar compra"
+        confirmationMessage.textContent = 'Confirma la compra.';
+        dialog.showModal();
+      };
+    }
+
+    // Cerrar el diálogo al hacer clic en el "x"
+    closeDialogButton.addEventListener('click', () => {
+      dialog.close();
+    });
+
+    // Confirmar la compra
+    confirmPurchaseButton.addEventListener('click', () => {
+      confirmationMessage.textContent = '¡Compra realizada con éxito! ¡Gracias por tu compra!';
+      this.clearCart();
+      
+      // Cerrar el diálogo después de 3 segundos
+      setTimeout(() => {
+        dialog.close();
+      }, 3000); // Retraso de 3 segundos para que el usuario vea el mensaje
+    });
+  }
+
+  clearCart() {
+    // Vaciar el carrito
+    localStorage.removeItem('products');
+    this.products = []; // Limpiar la lista de productos también en la instancia
+    this.render(); // Volver a renderizar el carrito
   }
 }
 customElements.define('custom-cart', CustomCart);
-customElements.define('products-items', ProductsItems);
-//DIALOGO
-const finalizeButton = document.querySelector('.cart-footer button'); // Botón "Finalizar compra"
-const dialog = document.querySelector('#confirmation-dialog'); // El diálogo
-const closeDialogButton = document.querySelector('#close-dialog'); // Botón para cerrar el diálogo
-const confirmPurchaseButton = document.querySelector('#confirm-purchase'); // Botón de confirmar compra
-const confirmationMessage = document.querySelector('#confirmation-message'); // Párrafo dentro del diálogo para el mensaje de confirmación
 
-// Mostrar el diálogo al hacer clic en "Finalizar compra"
-finalizeButton.addEventListener('click', () => {
-  // Restablecer el mensaje a su estado inicial cuando se abra el diálogo
-  if (confirmationMessage) {
-    confirmationMessage.textContent = 'Confirma la compra.';
-  }
-  
-  dialog.showModal(); // Muestra el diálogo
-});
-
-// Cerrar el diálogo al hacer clic en la "x"
-closeDialogButton.addEventListener('click', () => {
-  dialog.close(); // Cierra el diálogo
-});
-
-// Confirmar la compra
-confirmPurchaseButton.addEventListener('click', () => {
-  // Cambiar el mensaje dentro del diálogo solo cuando se confirma la compra
-  if (confirmationMessage) {
-    confirmationMessage.textContent = '¡Compra realizada con éxito! ¡Gracias por tu compra!';
-  }
-
-  // Vaciar el carrito
-  localStorage.removeItem('products');
-  
-  // Actualizar el carrito visualmente
-  const customCart = document.querySelector('custom-cart');
-  if (customCart) {
-    customCart.render();
-  }
-
-  // Cerrar el diálogo después de la confirmación
-  setTimeout(() => {
-    dialog.close(); // Cerrar el diálogo después de 1.5 segundos
-  }, 5000); // Retraso de 1.5 segundos para que el usuario vea el mensaje
-});
 
 
 
