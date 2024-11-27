@@ -1,12 +1,15 @@
+
 const getId = () => {
-    const searchParams = new URLSearchParams(location.search.slice(1));
-    return Number(searchParams.get('id'));
-  }
-  class CustomArticle extends HTMLElement {
+  const searchParams = new URLSearchParams(location.search.slice(1));
+  return Number(searchParams.get('id'));
+}
+
+  class ProductItems extends HTMLElement {
     constructor() {
       super()
       this.id = getId()
       console.log({ id: this.id })
+      
     }
 
     connectedCallback() {
@@ -19,6 +22,7 @@ const getId = () => {
 
     async render() {
       // 1. API get All Articles
+      
       const products = await this.loadArticles()
       console.log({ products})
       // 2. filter the 'article' by the id `this.id`
@@ -26,11 +30,31 @@ const getId = () => {
       console.log({ product })
       // 3. remplace the html with the article data
       // Rellenar la plantilla con los datos del artículo
-      this.querySelector('.title').textContent = product.title;
-      this.querySelector('.image').textContent = product.image;
-      this.querySelector('.description').textContent = product.description;
+      this.querySelector('.product-title').textContent = product.title;
+      this.querySelector('.product-image').src = product.image;
+      this.querySelector('.product-description').textContent = product.description;
+      this.querySelector('.product-price').textContent = product.price;
+      this.querySelector('.product-rating').textContent = product.rating + '⭐';
+      this.querySelector('.product-tags').textContent = product.tags;
+      const tagsContainer = this.querySelector('.product-tags');
+      tagsContainer.innerHTML = ''; // Limpia cualquier contenido previo
+      product.tags.map(tag => {
+        const tagSpan = document.createElement('span');
+        tagSpan.textContent = `#${tag}`; // Formato de texto para el tag
+        tagSpan.className = 'inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'; // Estilos de Tailwind
+        tagsContainer.appendChild(tagSpan); // Añade el span al contenedor de tags
+      });
+
+      const featuresContainer = this.querySelector('.product-features');
+      featuresContainer.innerHTML = ''; // Limpia cualquier contenido previo
+      product.features.map(feature => {
+        const featureItem = document.createElement('p');
+        featureItem.textContent = `${feature.type.charAt(0).toUpperCase() + feature.type.slice(1)}: ${feature.value}`; // Muestra el tipo y valor
+        featuresContainer.appendChild(featureItem); // Añade la característica al contenedor
+      });
+
       console.log('OK')
     }
   }
 
-  customElements.define('custom-article', CustomArticle);
+  customElements.define('products-items', ProductItems);

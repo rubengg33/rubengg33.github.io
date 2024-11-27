@@ -4,48 +4,186 @@ const getId = () => {
   return Number(searchParams.get('id'));
 }
 
+
+class CustomSearch extends HTMLElement {
+  constructor() {
+    super();
+    this.products = []; // Inicializa como un array vacío
+  }
+
+
+  async connectedCallback() {
+    // Carga los productos de manera dinámica
+    this.products = await this.loadProducts();
+    this.setupListeners();
+    this.renderResults(''); // Renderiza los resultados iniciales
+  }
+
+  async loadProducts() {
+    try {
+      const response = await fetch('https://products-foniuhqsba-uc.a.run.app/Smartwatches%20and%20gadgets');
+      if (!response.ok) throw new Error('Error al cargar productos');
+      return await response.json();
+    } catch (error) {
+      console.error('Error al cargar productos:', error);
+      return [];
+    }
+  }
+
+  setupListeners() {
+    const dialogBtn = this.querySelector('.dialog-search');
+    const closeBtn = this.querySelector('.close-btn');
+    const dialog = this.querySelector('dialog');
+
+    dialogBtn.addEventListener('click', () => dialog.showModal());
+    closeBtn.addEventListener('click', () => dialog.close());
+
+    const siteSearch = this.querySelector('#site-search');
+    siteSearch.addEventListener('input', (event) => this.search(event));
+  }
+
+  search(event) {
+    event.preventDefault();
+    const siteSearch = this.querySelector('#site-search');
+    const term = siteSearch.value;
+    this.renderResults(term);
+  }
+
+  renderResults(term = '') {
+    const searchResults = this.querySelector('#search-results');
+    searchResults.innerHTML = ''; // Limpia los resultados previos
+
+    const _products = this.products.filter(product =>
+      product.title.toLowerCase().includes(term.toLowerCase())
+    );
+
+    const template = this.querySelector('#search-template').content;
+    _products.map(product => {
+      const li = template.querySelector('li').cloneNode(true);
+
+      li.querySelector('.search-image').src = product.image || 'default.jpg';
+      li.querySelector('.search-title a').textContent = product.title;
+      li.querySelector('.search-description').textContent = product.description;
+
+      const enlace = li.querySelector('.search-title a');
+      enlace.href = enlace.href.replace('{id}', product.id);
+
+      searchResults.appendChild(li);
+    });
+  }
+}
+
+customElements.define('custom-search', CustomSearch);
+
+
 class ProductsItems extends HTMLElement {
   constructor() {
     super();
-    this.templateElement = document.querySelector('#product-item');
-    this.url = 'https://products-foniuhqsba-uc.a.run.app/Smartwatches%20and%20gadgets'
-    this.productId = getId();
+    this.templateElement = document.querySelector('#product-template');
+    this.url = 'https://products-foniuhqsba-uc.a.run.app/Smartwatches%20and%20gadgets';
+    this.productId = getId(); // Obtén el ID de la URL
+    this.filters = {};
+    this.products = [];
   }
 
   async load() {
-    return fetch(this.url).then(response => response.json())
+     const rawProducts = await fetch(this.url).then(response => response.json());
+
+    // Transformar las features en propiedades individuales
+    return rawProducts.map(product => {
+      const featuresMap = product.features.reduce((acc, feature) => {
+        acc[feature.type.toLowerCase()] = feature.value;
+        return acc;
+      }, {});
+
+      return {
+        ...product,
+        ...featuresMap // Añade las features como propiedades individuales
+      };
+    });
   }
 
   async connectedCallback() {
-    this.products = await this.load()
-    this.render()
+    this.products = await this.load();
+    this.render(this.products); // Renderiza los productos filtrados
+    this.setupFilters();
   }
 
-  render() {
-    this.products.map(product => {
-      if (!this.templateElement) return null
-      const card = this.templateElement.content.cloneNode(true)
-      const img = card.querySelector('.product-image')
-      img.src = product.image
+  setupFilters() {
+    const colorOptions = document.querySelectorAll('#color-menu li');
+    const storageOptions = document.querySelectorAll('#storage-menu li');
+    const connectivityOptions = document.querySelectorAll('#connectivity-menu li');
+    const compatibilityOptions = document.querySelectorAll('#compatibility-menu li');
 
-      const title = card.querySelector('.product-title')
-      title.textContent = product.title
+    const handleFilterClick = (type, value) => {
+      if (this.filters[type] === value) {
+        delete this.filters[type]; // Quita el filtro si ya está aplicado
+      } else {
+        this.filters[type] = value; // Añade el filtro
+      }
+      this.applyFilters(); // Aplica los filtros después de cada cambio
+    };
 
-      const description = card.querySelector('.product-description')
-      description.textContent = product.description
+    colorOptions.forEach(option => {
+      option.addEventListener('click', () => handleFilterClick('color', option.textContent.trim()));
+    });
 
-      const price = card.querySelector('.product-price')
-      price.textContent = product.price
-      const rating = card.querySelector('.product-rating')
-      rating.textContent = product.rating + '⭐'
-      const tagsContainer = card.querySelector('.tags');
+    storageOptions.forEach(option => {
+      option.addEventListener('click', () => handleFilterClick('storage', option.textContent.trim()));
+    });
+
+    connectivityOptions.forEach(option => {
+      option.addEventListener('click', () => handleFilterClick('connectivity', option.textContent.trim()));
+    });
+
+    compatibilityOptions.forEach(option => {
+      option.addEventListener('click', () => handleFilterClick('compatibility', option.textContent.trim()));
+    });
+  }
+
+  applyFilters() {
+    const filteredProducts = this.products.filter(product => {
+      return (
+        (!this.filters.color || product.color === this.filters.color) &&
+        (!this.filters.storage || product.storage === this.filters.storage) &&
+        (!this.filters.connectivity || product.connectivity.includes(this.filters.connectivity)) &&
+        (!this.filters.compatibility || product.compatibility.includes(this.filters.compatibility))
+      );
+    });
+
+    this.render(filteredProducts);
+  }
+
+  
+  async render(products) {
+    this.innerHTML = '';
+    products.forEach(product => {
+      if (!this.templateElement) return null;
+      const card = this.templateElement.content.cloneNode(true);
+      const img = card.querySelector('.product-image');
+      img.src = product.image;
+
+      const title = card.querySelector('.product-title');
+      title.textContent = product.title;
+
+      const description = card.querySelector('.product-description');
+      description.textContent = product.description;
+
+      const price = card.querySelector('.product-price');
+      price.textContent = product.price;
+
+      const rating = card.querySelector('.product-rating');
+      rating.textContent = product.rating + '⭐';
+
+      const tagsContainer = card.querySelector('.product-tags');
       tagsContainer.innerHTML = ''; // Limpia cualquier contenido previo
       product.tags.map(tag => {
         const tagSpan = document.createElement('span');
-        tagSpan.textContent = `#${tag}`;// Formato de texto para el tag
+        tagSpan.textContent = `#${tag}`; // Formato de texto para el tag
         tagSpan.className = 'inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'; // Estilos de Tailwind
         tagsContainer.appendChild(tagSpan); // Añade el span al contenedor de tags
       });
+
       const featuresContainer = card.querySelector('.features');
       featuresContainer.innerHTML = ''; // Limpia cualquier contenido previo
       product.features.map(feature => {
@@ -53,9 +191,10 @@ class ProductsItems extends HTMLElement {
         featureItem.textContent = `${feature.type.charAt(0).toUpperCase() + feature.type.slice(1)}: ${feature.value}`; // Muestra el tipo y valor
         featuresContainer.appendChild(featureItem); // Añade la característica al contenedor
       });
-      const add2Cart = card.querySelector('.add2cart')
+
+      const add2Cart = card.querySelector('.add2cart');
       add2Cart.addEventListener('click', () => {
-        const products = JSON.parse(localStorage.getItem('products') || '[]')
+        const products = JSON.parse(localStorage.getItem('products') || '[]');
         const existingProduct = products.find(p => p.id === product.id);
         if (existingProduct) {
           existingProduct.quantity++; // Incrementa la cantidad si el producto ya existe
@@ -66,12 +205,13 @@ class ProductsItems extends HTMLElement {
 
         localStorage.setItem('products', JSON.stringify(products));
 
-
-        const customCart = document.querySelector('custom-cart')
-        customCart.render()
-      })
-
-      this.appendChild(card)
+        const customCart = document.querySelector('custom-cart');
+        customCart.render();
+      });
+      card.querySelector('.product-title').addEventListener("click", () => {
+        window.location.href = `detail.html?id=${product.id}`;
+      });
+      this.appendChild(card);
     });
   }
 }
