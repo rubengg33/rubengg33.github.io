@@ -96,7 +96,7 @@ export function Article() {
 }
 
 // Componente principal que define las rutas
-function App() {
+function Rutas() {
   return (
     <BrowserRouter>
       <Routes>
@@ -111,6 +111,7 @@ function App() {
 // Componente Home
 function Home() {
   return (
+    <nav>
     <div>
       <ul>
         <li><a href="/World News">World News</a></li>
@@ -120,6 +121,7 @@ function Home() {
         <li><a href="/Entertainment">Entertainment</a></li>
       </ul>
     </div>
+    </nav>
   );
 }
-export default App;
+export default Rutas;

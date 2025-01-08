@@ -1,13 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import Rutas from './Rutas'; // Importa el componente de rutas
+import './styles.css';
+// import './index.css'
 // import App from './App.jsx'
-import Home from './Home.jsx'
-import Buscador from './Buscador.jsx'
+// import Home from './Home.jsx'
+// import Buscador from './Buscador.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Home />
-    <Buscador />
+    <Rutas />
   </StrictMode>,
 )
