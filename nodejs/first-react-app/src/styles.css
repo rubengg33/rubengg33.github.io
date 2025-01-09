@@ -1,3 +1,7 @@
+*{
+  margin: 0;
+  padding: 0;
+}
 .navbar {
     display: block;
   }
@@ -24,6 +28,8 @@ h1{
     font-weight: normal;
     text-align: center;
     font-size: 58px;
+    margin-bottom: 20px;
+    margin-top: 15px;
 }
 .flex {
     display: flex;
@@ -34,5 +40,31 @@ h1{
     background-color: white;
     box-sizing: border-box;
     border-bottom: 2px solid;
+  }
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 10px;
+  }
+  .card {
+    text-align: center;
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+    padding: 10px 10px 10px 0;
+    border-bottom: 1px solid gray;
+    margin-left: 10px;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  
+    .flex-col {
+      flex-flow: column;
+    }
+  }
+  .link{
+    color: blue;
   }
   
