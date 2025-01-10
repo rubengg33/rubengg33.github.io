@@ -1,0 +1,101 @@
+.dialog-search {
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  .menu-toggle {
+    border: none;
+    cursor: pointer;
+    padding: 0px 20px;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: math;
+    display: block;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  /* Centrar el diálogo en la pantalla */
+  dialog {
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #00000061;
+    width: min(800px, 90%); /* Reduce el ancho máximo en pantallas pequeñas */
+    max-height: 90%; /* Limita la altura del diálogo */
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    overflow: auto; /* Permite que el contenido del diálogo sea desplazable */
+    z-index: 1000;
+  }
+  
+  /* Botón para cerrar el diálogo */
+  .close-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  /* Input de búsqueda */
+  #site-search {
+    border: 2px solid #000;
+    height: 2em;
+    text-indent: 10px;
+    width: 100%;
+    margin-bottom: 20px; /* Espacio debajo del input */
+  }
+  
+  /* Estilo para la lista de resultados */
+  #search-results {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: calc(100% - 100px); /* Calcula espacio para el input y margen */
+    overflow-y: auto; /* Añade barra de desplazamiento si la lista es muy larga */
+  }
+  
+  /* Estilo para los resultados individuales */
+  dialog .card {
+    position: relative;
+    box-shadow: 0 0 10px lightgray;
+    border-radius: 2%;
+    overflow: hidden;
+    padding: 10px 10px 10px 0;
+    img {
+      width: 80px;
+      object-fit: cover;
+    }
+  
+    .flex-col {
+      flex-flow: column;
+    }
+  
+    h5 {
+      margin: 0;
+      padding: 0;
+    }
+  
+    p {
+      font-size: x-small;
+      color: gray;
+    }
+    relative-time {
+      font-size: x-small;
+    }
+  }

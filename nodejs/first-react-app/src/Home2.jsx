@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from './Header';
-
+import Buscador2 from './Buscador2';
 export default function Home2() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ export default function Home2() {
           throw new Error('Error al cargar los artículos');
         }
         const data = await response.json();
-        setArticles(data);
+        setArticles(data);  
       } catch (err) {
         setError(err.message);
       } finally {
@@ -48,6 +48,10 @@ export default function Home2() {
     setIdioma(nuevoIdioma);
   };
 
+  const truncateText = (text, maxLength) => {
+    if (!text) return '';
+    return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+  };
 
   if (loading) {
     return <div>Cargando artículos...</div>;
@@ -58,25 +62,29 @@ export default function Home2() {
   }
 
   return (
-    <div>
-      <div className=" mb-4 grid grid-cols-5 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-5 gap-0 ">
-        <button onClick={() => cambiarIdioma("es")} className="mr-2  justify-items-center px-2 py-2"><img src="españa.png" alt="" />es</button>
-        <button onClick={() => cambiarIdioma("ch")} className="mr-2 justify-items-center"><img src="china.png" alt="" />ch</button>
-        <button onClick={() => cambiarIdioma("fr")} className="mr-2 justify-items-center"><img src="francia.png" alt="" />fr</button>
-        <button onClick={() => cambiarIdioma("pt")} className="mr-2 justify-items-center"><img src="portugal.png" alt="" />pt</button>
-        <button onClick={() => cambiarIdioma("it")} className="mr-2 justify-items-center"><img src="italia.png" alt="" />it</button>
-      </div>
-      <h1>The New York Times</h1>
+    <div style={{ margin: '20px auto', maxWidth: '800px' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+      <Buscador2 articles={articles} idioma={idioma} />
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <button onClick={() => cambiarIdioma("es")}><img src="españa.png" alt="Español" /> es</button>
+        <button onClick={() => cambiarIdioma("ch")}><img src="china.png" alt="Chino" /> ch</button>
+        <button onClick={() => cambiarIdioma("fr")}><img src="francia.png" alt="Francés" /> fr</button>
+        <button onClick={() => cambiarIdioma("pt")}><img src="portugal.png" alt="Portugués" /> pt</button>
+        <button onClick={() => cambiarIdioma("it")}><img src="italia.png" alt="Italiano" /> it</button>
+        </div>
+        </div>
+      <a href="."><h1>The New York Times</h1></a>
       <Header />
       <ul className="grid">
         {articles.map((article) => (
           <div key={article.id} className="flex flex-col card">
           <li>
-            <h2>{article.headline}</h2>
-            {article.image_url && <img src={article.image_url} alt={article.translations[idioma]?.headline} />}
-            <p>{article.translations[idioma]?.abstract}</p>
-            <a className="link" href={`/news/${article.id}`}>Leer más</a>
-            <p>{timeSince(article.date)}</p>
+            <h2>{article.translations[idioma]?.headline}</h2>
+            {article.image_url && <img src={article.image_url}/>}
+            <p className="description">{article.translations[idioma]?.abstract}</p>
+            <p dangerouslySetInnerHTML={{ __html:truncateText(article.translations[idioma]?.body, 200)}}></p>
+            
+            <p className="time">{timeSince(article.date)}<span><a className="link" href={`/news/${article.id}`}>LEER</a></span></p>
           </li>
           </div>
         ))}
